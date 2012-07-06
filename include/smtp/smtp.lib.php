@@ -77,7 +77,7 @@ class smtp
 	* @var string
 	* @access private
 	*/
-	var $_charset = 'cp1251';
+	var $_charset = 'utf-8';
 
 
 	/**
