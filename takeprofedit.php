@@ -29,7 +29,7 @@
 require_once("include/bittorrent.php");
 
 function bark($msg) {
-	stderr("Произошла ошибка", $msg);
+	stderr("РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°", $msg);
 }
 
 dbconn();
@@ -46,11 +46,11 @@ $changedemail = 0;
 
 if ($chpassword != "") {
 	if (strlen($chpassword) > 40)
-		bark("Извините, ваш пароль слишком длинный (максимум 40 символов)");
+		bark("РР·РІРёРЅРёС‚Рµ, РІР°С€ РїР°СЂРѕР»СЊ СЃР»РёС€РєРѕРј РґР»РёРЅРЅС‹Р№ (РјР°РєСЃРёРјСѓРј 40 СЃРёРјРІРѕР»РѕРІ)");
 	if ($chpassword != $passagain)
-		bark("Пароли не совпадают. Попробуйте еще раз.");
+		bark("РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚. РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·.");
     if ($CURUSER["passhash"] != md5($CURUSER["secret"] . $oldpassword . $CURUSER["secret"]))
-            bark("Вы ввели неправильный старый пароль.");
+            bark("Р’С‹ РІРІРµР»Рё РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ СЃС‚Р°СЂС‹Р№ РїР°СЂРѕР»СЊ.");
 
 	$sec = mksecret();
 	$passhash = md5($sec . $chpassword . $sec);
@@ -61,10 +61,10 @@ if ($chpassword != "") {
 
 if ($email != $CURUSER["email"]) {
 	if (!validemail($email))
-		bark("Это не похоже на настоящий E-Mail.");
+		bark("Р­С‚Рѕ РЅРµ РїРѕС…РѕР¶Рµ РЅР° РЅР°СЃС‚РѕСЏС‰РёР№ E-Mail.");
   $r = sql_query("SELECT id FROM users WHERE email=" . sqlesc($email)) or sqlerr(__FILE__, __LINE__);
 	if (mysql_num_rows($r) > 0)
-		bark("Этот e-mail адрес уже используется одним из пользователей трекера. (<b>$email</b>)");
+		bark("Р­С‚РѕС‚ e-mail Р°РґСЂРµСЃ СѓР¶Рµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РѕРґРЅРёРј РёР· РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ С‚СЂРµРєРµСЂР°. (<b>$email</b>)");
 	$changedemail = 1;
 }
 
@@ -120,7 +120,7 @@ $theme = $_POST["theme"];
 $country = $_POST["country"];
 $language = $_POST["language"];
 if (!file_exists('./languages/lang_'.$language.'/lang_main.php')) {
-    bark('Выбранный язык в системе отсутствует!');
+    bark('Р’С‹Р±СЂР°РЅРЅС‹Р№ СЏР·С‹Рє РІ СЃРёСЃС‚РµРјРµ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚!');
 }
 $updateset[] = "language = " . sqlesc($language);
 //$timezone = 0 + $_POST["timezone"];
@@ -128,32 +128,32 @@ $updateset[] = "language = " . sqlesc($language);
 
 $icq = (int) unesc($_POST["icq"]);
 if (strlen($icq) > 10)
-    bark("Жаль, Номер icq слишком длинный  (Макс - 10)");
+    bark("Р–Р°Р»СЊ, РќРѕРјРµСЂ icq СЃР»РёС€РєРѕРј РґР»РёРЅРЅС‹Р№  (РњР°РєСЃ - 10)");
 $updateset[] = "icq = " . sqlesc($icq);
 
 $msn = unesc($_POST["msn"]);
 if (strlen($msn) > 30)
-    bark("Жаль, Ваш msn слишком длинный  (Макс - 30)");
+    bark("Р–Р°Р»СЊ, Р’Р°С€ msn СЃР»РёС€РєРѕРј РґР»РёРЅРЅС‹Р№  (РњР°РєСЃ - 30)");
 $updateset[] = "msn = " . sqlesc(htmlspecialchars($msn));
 
 $aim = unesc($_POST["aim"]);
 if (strlen($aim) > 30)
-    bark("Жаль, Ваш aim слишком длинный  (Макс - 30)");
+    bark("Р–Р°Р»СЊ, Р’Р°С€ aim СЃР»РёС€РєРѕРј РґР»РёРЅРЅС‹Р№  (РњР°РєСЃ - 30)");
 $updateset[] = "aim = " . sqlesc(htmlspecialchars($aim));
 
 $yahoo = unesc($_POST["yahoo"]);
 if (strlen($yahoo) > 30)
-    bark("Жаль, Ваш yahoo слишком длинный  (Макс - 30)");
+    bark("Р–Р°Р»СЊ, Р’Р°С€ yahoo СЃР»РёС€РєРѕРј РґР»РёРЅРЅС‹Р№  (РњР°РєСЃ - 30)");
 $updateset[] = "yahoo = " . sqlesc(htmlspecialchars($yahoo));
 
 $mirc = unesc($_POST["mirc"]);
 if (strlen($mirc) > 30)
-    bark("Жаль, Ваш mirc слишком длинный  (Макс - 30)");
+    bark("Р–Р°Р»СЊ, Р’Р°С€ mirc СЃР»РёС€РєРѕРј РґР»РёРЅРЅС‹Р№  (РњР°РєСЃ - 30)");
 $updateset[] = "mirc = " . sqlesc(htmlspecialchars($mirc));
 
 $skype = unesc($_POST["skype"]);
 if (strlen($skype) > 20)
-    bark("Жаль, Ваш skype слишком длинный  (Макс - 20)");
+    bark("Р–Р°Р»СЊ, Р’Р°С€ skype СЃР»РёС€РєРѕРј РґР»РёРЅРЅС‹Р№  (РњР°РєСЃ - 20)");
 $updateset[] = "skype = " . sqlesc(htmlspecialchars($skype));
 
 /*
@@ -215,7 +215,7 @@ Your new email address will appear in your profile after you do this. Otherwise
 your profile will remain unchanged.
 EOD;
 
-	sent_mail($email, $SITENAME, $SITEEMAIL, "Изменение настроек профиля на $thisdomain", $body, false);
+	sent_mail($email, $SITENAME, $SITEEMAIL, "РР·РјРµРЅРµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїСЂРѕС„РёР»СЏ РЅР° $thisdomain", $body, false);
 //	mail($email, "$thisdomain profile change confirmation", $body, "From: $SITEEMAIL");
 	$urladd .= "&mailsent=1";
 }

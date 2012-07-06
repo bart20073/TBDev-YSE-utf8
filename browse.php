@@ -243,7 +243,7 @@ else
 </STYLE>
 
 <table class="embedded" cellspacing="0" cellpadding="5" width="100%">
-<tr><td class="colhead" align="center" colspan="12">Список торрентов</td></tr>
+<tr><td class="colhead" align="center" colspan="12">РЎРїРёСЃРѕРє С‚РѕСЂСЂРµРЅС‚РѕРІ</td></tr>
 <tr><td colspan="12">
 
 <form method="get" action="browse.php">
@@ -341,11 +341,11 @@ if ($num_torrents) {
 else {
         if (isset($cleansearchstr)) {
                 print("<tr><td class=\"index\" colspan=\"12\">".$tracker_lang['nothing_found']."</td></tr>\n");
-                //print("<p>Попробуйте изменить запрос поиска.</p>\n");
+                //print("<p>РџРѕРїСЂРѕР±СѓР№С‚Рµ РёР·РјРµРЅРёС‚СЊ Р·Р°РїСЂРѕСЃ РїРѕРёСЃРєР°.</p>\n");
         }
         else {
                 print("<tr><td class=\"index\" colspan=\"12\">".$tracker_lang['nothing_found']."</td></tr>\n");
-                //print("<p>Извините, данная категория пустая.</p>\n");
+                //print("<p>РР·РІРёРЅРёС‚Рµ, РґР°РЅРЅР°СЏ РєР°С‚РµРіРѕСЂРёСЏ РїСѓСЃС‚Р°СЏ.</p>\n");
         }
 }
 

@@ -66,7 +66,7 @@ function getagent($httpagent, $peer_id = "") {
         elseif (preg_match("/ed2k_plugin v([0-9]+\\.[0-9]+).*/", $httpagent, $matches))
         return "eDonkey/$matches[1]";
         elseif (preg_match("/uTorrent\/([0-9]+)([0-9]+)([0-9]+)([0-9A-Z]+)/", $httpagent, $matches))
-        return "µTorrent/$matches[1].$matches[2].$matches[3].$matches[4]";
+        return "ВµTorrent/$matches[1].$matches[2].$matches[3].$matches[4]";
         elseif (preg_match("/CT([0-9]+)([0-9]+)([0-9]+)([0-9]+)/", $peer_id, $matches))
         return "cTorrent/$matches[1].$matches[2].$matches[3].$matches[4]";
         elseif (preg_match("/Transmission\/([0-9]+).([0-9]+)/", $httpagent, $matches))
@@ -160,7 +160,7 @@ function dltable($name, $arr, $torrent)
                   $s .= "<td>" . ($mod ? $e["ip"] : preg_replace('/\.\d+$/', ".xxx", $e["ip"])) . "</td>\n";
                 $secs = max(10, ($e["la"]) - $e["pa"]);
                 $revived = $e["revived"] == "yes";
-        		$s .= "<td align=\"center\">" . ($e[connectable] == "yes" ? "<span style=\"color: green; cursor: help;\" title=\"Порт открыт. Этот пир может подключатся к любому пиру.\">".$tracker_lang['yes']."</span>" : "<span style=\"color: red; cursor: help;\" title=\"Порт закрыт. Рекомендовано проверить настройки Firwewall'а.\">".$tracker_lang['no']."</span>") . "</td>\n";
+        		$s .= "<td align=\"center\">" . ($e[connectable] == "yes" ? "<span style=\"color: green; cursor: help;\" title=\"РџРѕСЂС‚ РѕС‚РєСЂС‹С‚. Р­С‚РѕС‚ РїРёСЂ РјРѕР¶РµС‚ РїРѕРґРєР»СЋС‡Р°С‚СЃСЏ Рє Р»СЋР±РѕРјСѓ РїРёСЂСѓ.\">".$tracker_lang['yes']."</span>" : "<span style=\"color: red; cursor: help;\" title=\"РџРѕСЂС‚ Р·Р°РєСЂС‹С‚. Р РµРєРѕРјРµРЅРґРѕРІР°РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ РЅР°СЃС‚СЂРѕР№РєРё Firwewall'Р°.\">".$tracker_lang['no']."</span>") . "</td>\n";
                 $s .= "<td align=\"right\"><nobr>" . mksize($e["uploaded"]) . "</nobr></td>\n";
                 $s .= "<td align=\"right\"><nobr>" . mksize($e["uploadoffset"] / $secs) . "/s</nobr></td>\n";
                 $s .= "<td align=\"right\"><nobr>" . mksize($e["downloaded"]) . "</nobr></td>\n";
@@ -236,7 +236,7 @@ else {
                 $s=$row["name"];
 
                 print("<table width=\"100%\" border=\"1\" cellspacing=\"0\" cellpadding=\"5\">\n");
-                print("<tr><td class=\"colhead\" colspan=\"2\"><div style=\"float: left; width: auto;\">:: ".$tracker_lang['torrent_details']."</div><div align=\"right\"><a href=\"bookmark.php?torrent=$row[id]\"><b>Добавить в избранное</b></a></div></td></tr>");
+                print("<tr><td class=\"colhead\" colspan=\"2\"><div style=\"float: left; width: auto;\">:: ".$tracker_lang['torrent_details']."</div><div align=\"right\"><a href=\"bookmark.php?torrent=$row[id]\"><b>Р”РѕР±Р°РІРёС‚СЊ РІ РёР·Р±СЂР°РЅРЅРѕРµ</b></a></div></td></tr>");
                 $url = "edit.php?id=" . $row["id"];
                 if (isset($_GET["returnto"])) {
                         $addthis = "&amp;returnto=" . urlencode($_GET["returnto"]);
@@ -260,7 +260,7 @@ else {
 				if ($row["image1"] != "") {
 					if ($row["image1"] != "")
 						$img1 = "<a href='viewimage.php?pic=$row[image1]'><img border='0' src='thumbnail.php?$row[image1]' /></a>";
-					tr('Постер', $img1, 1);
+					tr('РџРѕСЃС‚РµСЂ', $img1, 1);
 				}
 
                 if (!empty($row["descr"]))
@@ -270,7 +270,7 @@ else {
 
 				for ($i = 2; $i <= 5; $i++) {
 					if ($row['image'.$i])
-						$images[] = '<a href="torrents/images/' . $row['image'.$i] . '" rel="lightbox" title="Скриншот №'.($i - 1).'"><img title="Скриншот №'.($i - 1).'" border="0" src="screenshot.php?' . $row['image'.$i] . '" /></a>';
+						$images[] = '<a href="torrents/images/' . $row['image'.$i] . '" rel="lightbox" title="РЎРєСЂРёРЅС€РѕС‚ в„–'.($i - 1).'"><img title="РЎРєСЂРёРЅС€РѕС‚ в„–'.($i - 1).'" border="0" src="screenshot.php?' . $row['image'.$i] . '" /></a>';
 				}
 				if (count($images))
 					tr($tracker_lang['images'], implode('&nbsp; ', $images), 1);
@@ -348,7 +348,7 @@ else {
                 tr($tracker_lang['snatched'], $row["times_completed"] . " ".$tracker_lang['times']);
 
                 $keepget = "";
-                $uprow = (isset($row["username"]) ? ("<a href=userdetails.php?id=" . $row["owner"] . ">" . htmlspecialchars($row["username"]) . "</a>") : "<i>Аноним</i>");
+                $uprow = (isset($row["username"]) ? ("<a href=userdetails.php?id=" . $row["owner"] . ">" . htmlspecialchars($row["username"]) . "</a>") : "<i>РђРЅРѕРЅРёРј</i>");
 /*
                 if ($owned)
                         $uprow .= " $spacer<$editlink><b>[".$tracker_lang['edit']."]</b></a>";
@@ -429,7 +429,7 @@ else {
 				if ($row["times_completed"] > 0) {
                     $res = sql_query("SELECT users.id, users.username, users.title, users.uploaded, users.downloaded, users.donor, users.enabled, users.warned, users.last_access, users.class, snatched.startdat, snatched.last_action, snatched.completedat, snatched.seeder, snatched.userid, snatched.uploaded AS sn_up, snatched.downloaded AS sn_dn FROM snatched INNER JOIN users ON snatched.userid = users.id WHERE snatched.finished='yes' AND snatched.torrent =" . sqlesc($id) . " ORDER BY users.class DESC $limit") or sqlerr(__FILE__,__LINE__);
 					$snatched_full = "<table width=100% class=main border=1 cellspacing=0 cellpadding=5>\n";
-					$snatched_full .= "<tr><td class=colhead>Юзер</td><td class=colhead>Раздал</td><td class=colhead>Скачал</td><td class=colhead>Рейтинг</td><td class=colhead align=center>Начал / Закончил</td><td class=colhead align=center>Действие</td><td class=colhead align=center>Сидирует</td><td class=colhead align=center>ЛС</td></tr>";
+					$snatched_full .= "<tr><td class=colhead>Р®Р·РµСЂ</td><td class=colhead>Р Р°Р·РґР°Р»</td><td class=colhead>РЎРєР°С‡Р°Р»</td><td class=colhead>Р РµР№С‚РёРЅРі</td><td class=colhead align=center>РќР°С‡Р°Р» / Р—Р°РєРѕРЅС‡РёР»</td><td class=colhead align=center>Р”РµР№СЃС‚РІРёРµ</td><td class=colhead align=center>РЎРёРґРёСЂСѓРµС‚</td><td class=colhead align=center>Р›РЎ</td></tr>";
 
 					while ($arr = mysql_fetch_assoc($res)) {
 						//start Global
@@ -458,17 +458,17 @@ else {
 						//end
 						//$highlight = $CURUSER["id"] == $arr["id"] ? " bgcolor=#00A527" : "";;
 						$snatched_small[] = "<a href=userdetails.php?id=$arr[userid]>".get_user_class_color($arr["class"], $arr["username"])." (<font color=" . get_ratio_color($ratio) . ">$ratio</font>)</a>";
-						$snatched_full .= "<tr$highlight><td><a href=userdetails.php?id=$arr[userid]>".get_user_class_color($arr["class"], $arr["username"])."</a>".get_user_icons($arr)."</td><td><nobr>$uploaded&nbsp;Общего<br>$uploaded2&nbsp;Торрент</nobr></td><td><nobr>$downloaded&nbsp;Общего<br>$downloaded2&nbsp;Торрент</nobr></td><td><nobr>$ratio&nbsp;Общего<br>$ratio2&nbsp;Торрент</nobr></td><td align=center><nobr>" . $arr["startdat"] . "<br />" . $arr["completedat"] . "</nobr></td><td align=center><nobr>" . $arr["last_action"] . "</nobr></td><td align=center>" . ($arr["seeder"] == "yes" ? "<b><font color=green>Да</font>" : "<font color=red>Нет</font></b>") .
+						$snatched_full .= "<tr$highlight><td><a href=userdetails.php?id=$arr[userid]>".get_user_class_color($arr["class"], $arr["username"])."</a>".get_user_icons($arr)."</td><td><nobr>$uploaded&nbsp;РћР±С‰РµРіРѕ<br>$uploaded2&nbsp;РўРѕСЂСЂРµРЅС‚</nobr></td><td><nobr>$downloaded&nbsp;РћР±С‰РµРіРѕ<br>$downloaded2&nbsp;РўРѕСЂСЂРµРЅС‚</nobr></td><td><nobr>$ratio&nbsp;РћР±С‰РµРіРѕ<br>$ratio2&nbsp;РўРѕСЂСЂРµРЅС‚</nobr></td><td align=center><nobr>" . $arr["startdat"] . "<br />" . $arr["completedat"] . "</nobr></td><td align=center><nobr>" . $arr["last_action"] . "</nobr></td><td align=center>" . ($arr["seeder"] == "yes" ? "<b><font color=green>Р”Р°</font>" : "<font color=red>РќРµС‚</font></b>") .
 							"</td><td align=center><a href=message.php?action=sendmessage&amp;receiver=$arr[userid]><img src=$pic_base_url/button_pm.gif border=\"0\"></a></td></tr>\n";
                     }
 		            $snatched_full .= "</table>\n";
 					?><script language="javascript" type="text/javascript" src="js/show_hide.js"></script><?
 					if ($row["seeders"] == 0 || ($row["leechers"] / $row["seeders"] >= 2))
-						$reseed_button = "<form action=\"takereseed.php\"><input type=\"hidden\" name=\"torrent\" value=\"$id\" /><input type=\"submit\" value=\"Позвать скачавших\" /></form>";
+						$reseed_button = "<form action=\"takereseed.php\"><input type=\"hidden\" name=\"torrent\" value=\"$id\" /><input type=\"submit\" value=\"РџРѕР·РІР°С‚СЊ СЃРєР°С‡Р°РІС€РёС…\" /></form>";
 					if (!$_GET["snatched"]==1)
-						tr("Скачавшие<br /><a href=\"details.php?id=$id&amp;snatched=1#snatched\" class=\"sublink\">[Посмотреть список]</a>", '<a href="javascript: show_hide(\'s1\')"><img border="0" src="pic/plus.gif" id="pics1"><div id="ss1" style="display: none;">'.@implode(", ", $snatched_small).$reseed_button.'</div>', 1);
+						tr("РЎРєР°С‡Р°РІС€РёРµ<br /><a href=\"details.php?id=$id&amp;snatched=1#snatched\" class=\"sublink\">[РџРѕСЃРјРѕС‚СЂРµС‚СЊ СЃРїРёСЃРѕРє]</a>", '<a href="javascript: show_hide(\'s1\')"><img border="0" src="pic/plus.gif" id="pics1"><div id="ss1" style="display: none;">'.@implode(", ", $snatched_small).$reseed_button.'</div>', 1);
 					else
-						tr("Скачавшие<br /><a href=\"details.php?id=$id\" class=\"sublink\" name=\"snatched\">[Cпрятать список]</a>", $snatched_full,1);
+						tr("РЎРєР°С‡Р°РІС€РёРµ<br /><a href=\"details.php?id=$id\" class=\"sublink\" name=\"snatched\">[CРїСЂСЏС‚Р°С‚СЊ СЃРїРёСЃРѕРє]</a>", $snatched_full,1);
 				}
 
                         tr($tracker_lang['torrent_info'], "<a href=\"torrent_info.php?id=$id\">".$tracker_lang['show_data']."</a>", 1);
@@ -520,7 +520,7 @@ function send() {
 }
 </script>
 <div id="loading-layer" style="display:none;font-family: Verdana;font-size: 11px;width:200px;height:50px;background:#FFF;padding:10px;text-align:center;border:1px solid #000">
-     <div style="font-weight:bold" id="loading-layer-text">Загрузка. Пожалуйста, подождите...</div><br />
+     <div style="font-weight:bold" id="loading-layer-text">Р—Р°РіСЂСѓР·РєР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РїРѕРґРѕР¶РґРёС‚Рµ...</div><br />
      <img src="pic/loading.gif" border="0" />
 </div>
 <?
@@ -546,16 +546,16 @@ if (!$count) {
 
   print("<table style=\"margin-top: 2px;\" cellpadding=\"5\" width=\"100%\">");
   print("<tr><td class=colhead align=\"left\" colspan=\"2\">");
-  print("<div style=\"float: left; width: auto;\" align=\"left\"> :: Список комментариев</div>");
-  print("<div align=\"right\"><a href=#comments class=altlink_white>Добавить комментарий</a></div>");
+  print("<div style=\"float: left; width: auto;\" align=\"left\"> :: РЎРїРёСЃРѕРє РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ</div>");
+  print("<div align=\"right\"><a href=#comments class=altlink_white>Р”РѕР±Р°РІРёС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№</a></div>");
   print("</td></tr><tr><td align=\"center\">");
-  print("Комментариев нет. <a href=#comments>Желаете добавить?</a>");
+  print("РљРѕРјРјРµРЅС‚Р°СЂРёРµРІ РЅРµС‚. <a href=#comments>Р–РµР»Р°РµС‚Рµ РґРѕР±Р°РІРёС‚СЊ?</a>");
   print("</td></tr></table><br>");
 
   print("<table style=\"margin-top: 2px;\" cellpadding=\"5\" width=\"100%\">");
-  print("<tr><td class=colhead align=\"left\" colspan=\"2\"> <a name=comments>&nbsp;</a><b>:: Без комментариев</b></td></tr>");
+  print("<tr><td class=colhead align=\"left\" colspan=\"2\"> <a name=comments>&nbsp;</a><b>:: Р‘РµР· РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ</b></td></tr>");
   print("<tr><td align=\"center\" >");
-  //print("<b>Ваше имя:</b> ");
+  //print("<b>Р’Р°С€Рµ РёРјСЏ:</b> ");
   //print("".$CURUSER['username']."<p>");
   print("<form name=comment method=\"post\" action=\"comment.php?action=add\">");
   print("<div>");
@@ -563,7 +563,7 @@ if (!$count) {
   print("</div>");
   print("</td></tr><tr><td  align=\"center\" colspan=\"2\">");
   print("<input type=\"hidden\" name=\"tid\" value=\"$id\"/>");
-  print("<input type=\"submit\" class=btn value=\"Разместить комментарий\" />");
+  print("<input type=\"submit\" class=btn value=\"Р Р°Р·РјРµСЃС‚РёС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№\" />");
   print("</td></tr></form></table>");
 
         }
@@ -580,8 +580,8 @@ if (!$count) {
 
          print("<table class=main cellspacing=\"0\" cellPadding=\"5\" width=\"100%\" >");
          print("<tr><td class=\"colhead\" align=\"center\" >");
-         print("<div style=\"float: left; width: auto;\" align=\"left\"> :: Список комментариев</div>");
-         print("<div align=\"right\"><a href=#comments class=altlink_white>Добавить комментарий</a></div>");
+         print("<div style=\"float: left; width: auto;\" align=\"left\"> :: РЎРїРёСЃРѕРє РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ</div>");
+         print("<div align=\"right\"><a href=#comments class=altlink_white>Р”РѕР±Р°РІРёС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№</a></div>");
          print("</td></tr>");
 
          print("<tr><td>");
@@ -598,9 +598,9 @@ if (!$count) {
 
 
   print("<table style=\"margin-top: 2px;\" cellpadding=\"5\" width=\"100%\">");
-  print("<tr><td class=colhead align=\"left\" colspan=\"2\">  <a name=comments>&nbsp;</a><b>:: Добавить комментарий к торренту</b></td></tr>");
+  print("<tr><td class=colhead align=\"left\" colspan=\"2\">  <a name=comments>&nbsp;</a><b>:: Р”РѕР±Р°РІРёС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№ Рє С‚РѕСЂСЂРµРЅС‚Сѓ</b></td></tr>");
   print("<tr><td width=\"100%\" align=\"center\" >");
-  //print("Ваше имя: ");
+  //print("Р’Р°С€Рµ РёРјСЏ: ");
   //print("".$CURUSER['username']."<p>");
   print("<form name=comment method=\"post\" action=\"comment.php?action=add\">");
   print("<center><table border=\"0\"><tr><td class=\"clear\">");
@@ -608,7 +608,7 @@ if (!$count) {
   print("</td></tr></table></center>");
   print("</td></tr><tr><td  align=\"center\" colspan=\"2\">");
   print("<input type=\"hidden\" name=\"tid\" value=\"$id\"/>");
-  print("<input type=\"submit\" class=btn value=\"Разместить комментарий\" />");
+  print("<input type=\"submit\" class=btn value=\"Р Р°Р·РјРµСЃС‚РёС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№\" />");
   print("</td></tr></form></table>");
 
         }

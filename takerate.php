@@ -58,7 +58,7 @@ if (!$row)
 
 $own = sql_query("SELECT id FROM ratings WHERE torrent = $id AND user = $CURUSER[id]");
 if (mysql_num_rows($own) != 0)
-    bark("Вы уже голосовали за этот торрент!"); 
+    bark("Р’С‹ СѓР¶Рµ РіРѕР»РѕСЃРѕРІР°Р»Рё Р·Р° СЌС‚РѕС‚ С‚РѕСЂСЂРµРЅС‚!"); 
 
 $res = sql_query("INSERT INTO ratings (torrent, user, rating, added) VALUES ($id, " . $CURUSER["id"] . ", $rating, NOW())");
 if (!$res) {

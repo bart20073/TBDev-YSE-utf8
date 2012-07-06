@@ -48,14 +48,14 @@ $newclass = 0+$_GET['class'];
 }
 
 // HTML Code to allow changes to current class
-stdhead("Смена класса");
+stdhead("РЎРјРµРЅР° РєР»Р°СЃСЃР°");
 ?>
 
 <form method=get action='setclass.php'>
 <input type=hidden name='action' value='editclass'>
 <input type=hidden name='returnto' value='userdetails.php?id=<?=$CURUSER['id']?>'> <!-- Change to any page you want -->
 <table width=150 border=2 cellspacing=5 cellpadding=5>
-<tr><td>Класс</td><td align=left><select name=class> <!-- Populate drop down box with all lower classes -->
+<tr><td>РљР»Р°СЃСЃ</td><td align=left><select name=class> <!-- Populate drop down box with all lower classes -->
 <?
 $maxclass = get_user_class() - 1;
 for ($i = 0; $i <= $maxclass; ++$i)
@@ -63,7 +63,7 @@ print("<option value=$i" .">" . get_user_class_name($i) . "\n");
 ?>
 </select></td></tr>
 </td></tr>
-<tr><td colspan=3 align=center><input type=submit class=btn value='Смена класса'></td></tr></form>
+<tr><td colspan=3 align=center><input type=submit class=btn value='РЎРјРµРЅР° РєР»Р°СЃСЃР°'></td></tr></form>
 </form>
 </table>
 <br />

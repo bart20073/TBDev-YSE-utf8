@@ -48,15 +48,15 @@ if ($action == 'delete')
 
   $sure = $_GET["sure"];
   if (!$sure)
-    stderr("Удалить новость","Вы действителньо хотите удалить эту новость? Нажмите\n" .
-    	"<a href=?action=delete&newsid=$newsid&returnto=$returnto&sure=1>сюда</a> если вы уверены.");
+    stderr("РЈРґР°Р»РёС‚СЊ РЅРѕРІРѕСЃС‚СЊ","Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»РЅСЊРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚Сѓ РЅРѕРІРѕСЃС‚СЊ? РќР°Р¶РјРёС‚Рµ\n" .
+    	"<a href=?action=delete&newsid=$newsid&returnto=$returnto&sure=1>СЃСЋРґР°</a> РµСЃР»Рё РІС‹ СѓРІРµСЂРµРЅС‹.");
 
   sql_query("DELETE FROM news WHERE id=$newsid") or sqlerr(__FILE__, __LINE__);
 
 	if ($returnto != "")
 		header("Location: $returnto");
 	else
-		$warning = "Новость <b>успешно</b> удалена";
+		$warning = "РќРѕРІРѕСЃС‚СЊ <b>СѓСЃРїРµС€РЅРѕ</b> СѓРґР°Р»РµРЅР°";
 }
 
 //   Add News Item    /////////////////////////////////////////////////////////
@@ -66,11 +66,11 @@ if ($action == 'add')
 
 	$subject = $_POST["subject"];
 	if (!$subject)
-		stderr($tracker_lang['error'],"Тема новости не может быть пустой!");
+		stderr($tracker_lang['error'],"РўРµРјР° РЅРѕРІРѕСЃС‚Рё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚РѕР№!");
 
 	$body = $_POST["body"];
 	if (!$body)
-		stderr($tracker_lang['error'],"Тело новости не может быть пустым!");
+		stderr($tracker_lang['error'],"РўРµР»Рѕ РЅРѕРІРѕСЃС‚Рё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј!");
 
 	$added = $_POST["added"];
 	if (!$added)
@@ -79,9 +79,9 @@ if ($action == 'add')
   sql_query("INSERT INTO news (userid, added, body, subject) VALUES (".
   	$CURUSER['id'] . ", $added, " . sqlesc($body) . ", " . sqlesc($subject) . ")") or sqlerr(__FILE__, __LINE__);
 	if (mysql_affected_rows() == 1)
-		$warning = "Новость <b>успешно добавлена</b>";
+		$warning = "РќРѕРІРѕСЃС‚СЊ <b>СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°</b>";
 	else
-		stderr($tracker_lang['error'],"Только-что произошло что-то непонятное.");
+		stderr($tracker_lang['error'],"РўРѕР»СЊРєРѕ-С‡С‚Рѕ РїСЂРѕРёР·РѕС€Р»Рѕ С‡С‚Рѕ-С‚Рѕ РЅРµРїРѕРЅСЏС‚РЅРѕРµ.");
 }
 
 //   Edit News Item    ////////////////////////////////////////////////////////
@@ -109,10 +109,10 @@ if ($action == 'edit')
 
 	$subject = $_POST["subject"];
 	if ($subject == "")
-		stderr($tracker_lang['error'],"Тема новости не может быть пустой!");
+		stderr($tracker_lang['error'],"РўРµРјР° РЅРѕРІРѕСЃС‚Рё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚РѕР№!");
 
     if ($body == "")
-    	stderr($tracker_lang['error'], "Тело новости не может быть пустым!");
+    	stderr($tracker_lang['error'], "РўРµР»Рѕ РЅРѕРІРѕСЃС‚Рё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј!");
 
     $body = sqlesc($body);
 
@@ -127,21 +127,21 @@ if ($action == 'edit')
 		if ($returnto != "")
 			header("Location: $returnto");
 		else
-			$warning = "Новость <b>успешно</b> отредактирована";
+			$warning = "РќРѕРІРѕСЃС‚СЊ <b>СѓСЃРїРµС€РЅРѕ</b> РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅР°";
   }
   else
   {
  	 	$returnto = htmlentities($_GET['returnto']);
-	  stdhead("Редактирование новости");
+	  stdhead("Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РЅРѕРІРѕСЃС‚Рё");
 	  print("<form method=post name=news action=?action=edit&newsid=$newsid>\n");
 	  print("<table border=1 cellspacing=0 cellpadding=5>\n");
-	  print("<tr><td class=colhead>Редактирование новости<input type=hidden name=returnto value=$returnto></td></tr>\n");
-	  print("<tr><td>Тема: <input type=text name=subject maxlength=70 size=50 value=\"" . htmlspecialchars($arr["subject"]) . "\"/></td></tr>");
+	  print("<tr><td class=colhead>Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РЅРѕРІРѕСЃС‚Рё<input type=hidden name=returnto value=$returnto></td></tr>\n");
+	  print("<tr><td>РўРµРјР°: <input type=text name=subject maxlength=70 size=50 value=\"" . htmlspecialchars($arr["subject"]) . "\"/></td></tr>");
 	  print("<tr><td style='padding: 0px'>");
 	  textbbcode("news","body",htmlspecialchars($arr["body"]));
 	  //<textarea name=body cols=145 rows=5 style='border: 0px'>" . htmlspecialchars($arr["body"]) . 
 	  print("</textarea></td></tr>\n");
-	  print("<tr><td align=center><input type=submit value='Отредактировать'></td></tr>\n");
+	  print("<tr><td align=center><input type=submit value='РћС‚СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ'></td></tr>\n");
 	  print("</table>\n");
 	  print("</form>\n");
 	  stdfoot();
@@ -151,18 +151,18 @@ if ($action == 'edit')
 
 //   Other Actions and followup    ////////////////////////////////////////////
 
-stdhead("Новости");
+stdhead("РќРѕРІРѕСЃС‚Рё");
 if ($warning)
 	print("<p><font size=-3>($warning)</font></p>");
 print("<form method=post name=news action=?action=add>\n");
 print("<table border=1 cellspacing=0 cellpadding=5>\n");
-print("<tr><td class=colhead>Добавить новость</td></tr>\n");
-print("<tr><td>Тема: <input type=text name=subject maxlength=40 size=50 value=\"" . htmlspecialchars($arr["subject"]) . "\"/></td></tr>");
+print("<tr><td class=colhead>Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕСЃС‚СЊ</td></tr>\n");
+print("<tr><td>РўРµРјР°: <input type=text name=subject maxlength=40 size=50 value=\"" . htmlspecialchars($arr["subject"]) . "\"/></td></tr>");
 print("<tr><td style='padding: 0px'>");
 textbbcode("news","body","");
 //<textarea name=body cols=145 rows=5 style='border: 0px'>
 print("</textarea></td></tr>\n");
-print("<tr><td align=center><input type=submit value='Добавить' class=btn></td></tr>\n");
+print("<tr><td align=center><input type=submit value='Р”РѕР±Р°РІРёС‚СЊ' class=btn></td></tr>\n");
 print("</table></form><br /><br />\n");
 
 $res = sql_query("SELECT * FROM news ORDER BY added DESC") or sqlerr(__FILE__, __LINE__);
@@ -180,7 +180,7 @@ if (mysql_num_rows($res) > 0)
 		$body = $arr["body"];
 		$subject = $arr["subject"];
 	  $userid = $arr["userid"];
-	  $added = $arr["added"] . " GMT (" . (get_elapsed_time(sql_timestamp_to_unix_timestamp($arr["added"]))) . " назад)";
+	  $added = $arr["added"] . " GMT (" . (get_elapsed_time(sql_timestamp_to_unix_timestamp($arr["added"]))) . " РЅР°Р·Р°Рґ)";
 
     $res2 = sql_query("SELECT username, donor FROM users WHERE id = $userid") or sqlerr(__FILE__, __LINE__);
     $arr2 = mysql_fetch_array($res2);
@@ -188,15 +188,15 @@ if (mysql_num_rows($res) > 0)
     $postername = $arr2["username"];
 
     if ($postername == "")
-    	$by = "Неизвестно [$userid]";
+    	$by = "РќРµРёР·РІРµСЃС‚РЅРѕ [$userid]";
     else
     	$by = "<a href=userdetails.php?id=$userid><b>$postername</b></a>" .
     		($arr2["donor"] == "yes" ? "<img src=pic/star.gif alt='Donor'>" : "");
 
 	  print("<p class=sub><table border=0 cellspacing=0 cellpadding=0><tr><td class=embedded>");
-    print("Добавлена $added&nbsp;-&nbsp;$by");
-    print(" - [<a href=?action=edit&newsid=$newsid><b>Редактировать</b></a>]");
-    print(" - [<a href=?action=delete&newsid=$newsid><b>Удалить</b></a>]");
+    print("Р”РѕР±Р°РІР»РµРЅР° $added&nbsp;-&nbsp;$by");
+    print(" - [<a href=?action=edit&newsid=$newsid><b>Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</b></a>]");
+    print(" - [<a href=?action=delete&newsid=$newsid><b>РЈРґР°Р»РёС‚СЊ</b></a>]");
     print("</td></tr></table></p>\n");
 
 	  begin_table(true);
@@ -208,7 +208,7 @@ if (mysql_num_rows($res) > 0)
 	end_main_frame();
 }
 else
-  stdmsg("Извините", "Новостей нет!");
+  stdmsg("РР·РІРёРЅРёС‚Рµ", "РќРѕРІРѕСЃС‚РµР№ РЅРµС‚!");
 stdfoot();
 die;
 ?>

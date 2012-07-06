@@ -40,31 +40,31 @@ if (!$row || $row["banned"] == "yes")
 	stderr($tracker_lang['error'], $tracker_lang['no_torrent_with_such_id']);
 
 if ($row["times_completed"] == 0)
-	stderr($tracker_lang['error'], "Èçâèíèòå, íî ýòîò òîððåíò åùå íèêåì íå ñêà÷àí.");
+	stderr($tracker_lang['error'], "Ð˜Ð·Ð²Ð¸Ð½Ð¸Ñ‚Ðµ, Ð½Ð¾ ÑÑ‚Ð¾Ñ‚ Ñ‚Ð¾Ñ€Ñ€ÐµÐ½Ñ‚ ÐµÑ‰Ðµ Ð½Ð¸ÐºÐµÐ¼ Ð½Ðµ ÑÐºÐ°Ñ‡Ð°Ð½.");
 
 if ($row["leechers"] == 0)
-	stderr($tracker_lang['error'], "Íà ýòîé ðàçäà÷å íå íóæíà ïîìîùü ò.ê. åå íèêòî íå êà÷àåò.");
+	stderr($tracker_lang['error'], "ÐÐ° ÑÑ‚Ð¾Ð¹ Ñ€Ð°Ð·Ð´Ð°Ñ‡Ðµ Ð½Ðµ Ð½ÑƒÐ¶Ð½Ð° Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒ Ñ‚.Ðº. ÐµÐµ Ð½Ð¸ÐºÑ‚Ð¾ Ð½Ðµ ÐºÐ°Ñ‡Ð°ÐµÑ‚.");
 
 $dt = time() - 24*3600;
 
 if ($row["lr"] > $dt && get_date_time($row["lr"]) != "0000-00-00 00:00:00")
-	stderr($tracker_lang['error'], "Èçâèíèòå, íî åùå íå ïðîøëè ñóòêè ñ ïðîøëîãî çàïðîñà âåðíóòñÿ íà ðàçäà÷ó.");
+	stderr($tracker_lang['error'], "Ð˜Ð·Ð²Ð¸Ð½Ð¸Ñ‚Ðµ, Ð½Ð¾ ÐµÑ‰Ðµ Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¸ ÑÑƒÑ‚ÐºÐ¸ Ñ Ð¿Ñ€Ð¾ÑˆÐ»Ð¾Ð³Ð¾ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ° Ð²ÐµÑ€Ð½ÑƒÑ‚ÑÑ Ð½Ð° Ñ€Ð°Ð·Ð´Ð°Ñ‡Ñƒ.");
 
-$subject = sqlesc("Ïîìîãèòå ðàçäàòü {$row["name"]}");
+$subject = sqlesc("ÐŸÐ¾Ð¼Ð¾Ð³Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð´Ð°Ñ‚ÑŒ {$row["name"]}");
 
-$msg = sqlesc("Çäðàâñòâóéòå!
+$msg = sqlesc("Ð—Ð´Ñ€Ð°Ð²ÑÑ‚Ð²ÑƒÐ¹Ñ‚Ðµ!
 
-Âàøà ïîìîùü íåîáõîäèìà â ðàçäà÷å [url=details.php?id={$id}]{$row["cat_name"]} :: {$row["name"]}[/url]
-Åñëè âû ðåøèëè ïîìî÷ü, íî óæå óäàëèëè òîððåíò-ôàéë, ìîæåòå ñêà÷àòü åãî [url=download.php?id=$id&name=" . rawurlencode($row["filename"]) . "]çäåñü[/url].
+Ð’Ð°ÑˆÐ° Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒ Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ð° Ð² Ñ€Ð°Ð·Ð´Ð°Ñ‡Ðµ [url=details.php?id={$id}]{$row["cat_name"]} :: {$row["name"]}[/url]
+Ð•ÑÐ»Ð¸ Ð²Ñ‹ Ñ€ÐµÑˆÐ¸Ð»Ð¸ Ð¿Ð¾Ð¼Ð¾Ñ‡ÑŒ, Ð½Ð¾ ÑƒÐ¶Ðµ ÑƒÐ´Ð°Ð»Ð¸Ð»Ð¸ Ñ‚Ð¾Ñ€Ñ€ÐµÐ½Ñ‚-Ñ„Ð°Ð¹Ð», Ð¼Ð¾Ð¶ÐµÑ‚Ðµ ÑÐºÐ°Ñ‡Ð°Ñ‚ÑŒ ÐµÐ³Ð¾ [url=download.php?id=$id&name=" . rawurlencode($row["filename"]) . "]Ð·Ð´ÐµÑÑŒ[/url].
 
-Íàäåþñü íà âàøó ïîìîùü!");
+ÐÐ°Ð´ÐµÑŽÑÑŒ Ð½Ð° Ð²Ð°ÑˆÑƒ Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒ!");
 
 sql_query("INSERT INTO messages (sender, receiver, poster, added, subject, msg) SELECT $CURUSER[id], userid, 0, NOW(), $subject, $msg FROM snatched WHERE torrent = $id AND userid != $CURUSER[id] AND finished = 'yes'") or sqlerr(__FILE__, __LINE__);
 sql_query("UPDATE torrents SET last_reseed = NOW() WHERE id = $id") or sqlerr(__FILE__, __LINE__);
 header("Refresh: 2; url=details.php?id=$id");
 
-stdhead("Ïîçâàòü ñêà÷àâøèõ íà òîððåíò $row[name]");
-stdmsg("Óñïåøíî", "Âàø çàïðîñ íà ïðèçûâ ñêà÷àâøèõ âûïîëíåí. Æäèòå ðåçóëüòàòîâ â òå÷åíèå ñóòîê, èíà÷å ïîâòîðèòå çàïðîñ.");
+stdhead("ÐŸÐ¾Ð·Ð²Ð°Ñ‚ÑŒ ÑÐºÐ°Ñ‡Ð°Ð²ÑˆÐ¸Ñ… Ð½Ð° Ñ‚Ð¾Ñ€Ñ€ÐµÐ½Ñ‚ $row[name]");
+stdmsg("Ð£ÑÐ¿ÐµÑˆÐ½Ð¾", "Ð’Ð°Ñˆ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¿Ñ€Ð¸Ð·Ñ‹Ð² ÑÐºÐ°Ñ‡Ð°Ð²ÑˆÐ¸Ñ… Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½. Ð–Ð´Ð¸Ñ‚Ðµ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð² Ð² Ñ‚ÐµÑ‡ÐµÐ½Ð¸Ðµ ÑÑƒÑ‚Ð¾Ðº, Ð¸Ð½Ð°Ñ‡Ðµ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚Ðµ Ð·Ð°Ð¿Ñ€Ð¾Ñ.");
 stdfoot();
 
 ?>

@@ -49,7 +49,7 @@ sql_query("UPDATE users SET passkey='$CURUSER[passkey]' WHERE id=$CURUSER[id]");
 
 ?>
 <div align=center>
-<p><span style="color: green; font-weight: bold;">После загрузки торрента, вам нужно будет скачать торрент и поставить качаться в папку где лежат оригиналы файлов.</span></p>
+<p><span style="color: green; font-weight: bold;">РџРѕСЃР»Рµ Р·Р°РіСЂСѓР·РєРё С‚РѕСЂСЂРµРЅС‚Р°, РІР°Рј РЅСѓР¶РЅРѕ Р±СѓРґРµС‚ СЃРєР°С‡Р°С‚СЊ С‚РѕСЂСЂРµРЅС‚ Рё РїРѕСЃС‚Р°РІРёС‚СЊ РєР°С‡Р°С‚СЊСЃСЏ РІ РїР°РїРєСѓ РіРґРµ Р»РµР¶Р°С‚ РѕСЂРёРіРёРЅР°Р»С‹ С„Р°Р№Р»РѕРІ.</span></p>
 <form name="upload" enctype="multipart/form-data" action="takeupload.php" method="post">
 <input type="hidden" name="MAX_FILE_SIZE" value="<?=$max_torrent_size?>" />
 <table border="1" cellspacing="0" cellpadding="5">
@@ -60,10 +60,10 @@ tr($tracker_lang['torrent_file'], "<input type=file name=tfile size=80>\n", 1);
 tr($tracker_lang['torrent_name'], "<input type=\"text\" name=\"name\" size=\"80\" /><br />(".$tracker_lang['taken_from_torrent'].")\n", 1);
 tr($tracker_lang['img_poster'], $tracker_lang['max_file_size'].": 500kb<br />".$tracker_lang['avialable_formats'].": .gif .jpg .png<br /><input type=file name=image0 size=80>\n", 1);
 tr($tracker_lang['images'], $tracker_lang['max_file_size'].": 500kb<br />".$tracker_lang['avialable_formats'].": .gif .jpg .png<br />".
-		"<b>".$tracker_lang['image']." №1:</b>&nbsp&nbsp<input type=file name=image1 size=80><br />".
-		"<b>".$tracker_lang['image']." №2:</b>&nbsp&nbsp<input type=file name=image2 size=80><br />".
-		"<b>".$tracker_lang['image']." №3:</b>&nbsp&nbsp<input type=file name=image3 size=80><br />".
-		"<b>".$tracker_lang['image']." №4:</b>&nbsp&nbsp<input type=file name=image4 size=80>", 1);
+		"<b>".$tracker_lang['image']." в„–1:</b>&nbsp&nbsp<input type=file name=image1 size=80><br />".
+		"<b>".$tracker_lang['image']." в„–2:</b>&nbsp&nbsp<input type=file name=image2 size=80><br />".
+		"<b>".$tracker_lang['image']." в„–3:</b>&nbsp&nbsp<input type=file name=image3 size=80><br />".
+		"<b>".$tracker_lang['image']." в„–4:</b>&nbsp&nbsp<input type=file name=image4 size=80>", 1);
 print("<tr><td class=rowhead style='padding: 3px'>".$tracker_lang['description']."</td><td>");
 textbbcode("upload","descr");
 print("</td></tr>\n");
@@ -81,7 +81,7 @@ if(get_user_class() >= UC_ADMINISTRATOR)
 	tr($tracker_lang['golden'], "<input type=checkbox name=free value=yes> ".$tracker_lang['golden_descr'], 1);
 
 if (get_user_class() >= UC_ADMINISTRATOR)
-    tr("Важный", "<input type=\"checkbox\" name=\"sticky\" value=\"yes\">Прикрепить этот торрент (всегда наверху)", 1);
+    tr("Р’Р°Р¶РЅС‹Р№", "<input type=\"checkbox\" name=\"sticky\" value=\"yes\">РџСЂРёРєСЂРµРїРёС‚СЊ СЌС‚РѕС‚ С‚РѕСЂСЂРµРЅС‚ (РІСЃРµРіРґР° РЅР°РІРµСЂС…Сѓ)", 1);
 
 ?>
 <tr><td align="center" colspan="2"><input type="submit" class=btn value="<?=$tracker_lang['upload'];?>" /></td></tr>

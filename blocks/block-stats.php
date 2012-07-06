@@ -32,8 +32,8 @@ $content .= "<table width=\"100%\" class=\"main\" border=\"0\" cellspacing=\"0\"
 <table width=\"100%\" class=\"main\" border=\"0\" cellspacing=\"0\" cellpadding=\"10\">
   <tr>
     <td width=\"50%\" align=\"center\" style=\"border: none;\"><table class=\"main\" border=\"1\" cellspacing=\"0\" cellpadding=\"5\">
-<tr><td class=\"rowhead\">".$tracker_lang['users_registered']."</td><td align=right><img src=\"pic/male.gif\" alt=\"Ïàğíè\">$male<img src=\"pic/female.gif\" alt=\"Äåâóøêè\">$female<br />".$tracker_lang['total'].": $registered</td></tr>
-<tr><td colspan=\"2\" class=\"rowhead\"><table width=\"100%\" border=\"1\" cellspacing=\"0\" cellpadding=\"5\"><tr><td style=\"text-align: right; font-weight: bold; vertical-align: top;\">Ìåñò íà òğåêåğå</td><td align=\"right\">$maxusers</td></tr></table></td></tr>
+<tr><td class=\"rowhead\">".$tracker_lang['users_registered']."</td><td align=right><img src=\"pic/male.gif\" alt=\"ĞŸĞ°Ñ€Ğ½Ğ¸\">$male<img src=\"pic/female.gif\" alt=\"Ğ”ĞµĞ²ÑƒÑˆĞºĞ¸\">$female<br />".$tracker_lang['total'].": $registered</td></tr>
+<tr><td colspan=\"2\" class=\"rowhead\"><table width=\"100%\" border=\"1\" cellspacing=\"0\" cellpadding=\"5\"><tr><td style=\"text-align: right; font-weight: bold; vertical-align: top;\">ĞœĞµÑÑ‚ Ğ½Ğ° Ñ‚Ñ€ĞµĞºĞµÑ€Ğµ</td><td align=\"right\">$maxusers</td></tr></table></td></tr>
 <tr><td class=\"rowhead\">".$tracker_lang['users_unconfirmed']."</td><td align=right>$unverified</td></tr>
 <tr><td class=\"rowhead\">".$tracker_lang['users_warned']."&nbsp;<img src=\"pic/warned.gif\" border=0 align=absbottom></td><td align=right>$warned_users</td></tr>
 <tr><td class=\"rowhead\">".$tracker_lang['users_disabled']."&nbsp;<img src=\"pic/disabled.gif\" border=0 align=absbottom></td><td align=right>$disabled</td></tr>
