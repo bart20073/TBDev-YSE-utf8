@@ -3,6 +3,7 @@
 define('CWD', (($getcwd = getcwd()) ? $getcwd : '.'));
 
 require_once(CWD . '/../include/secrets.php');
+require_once(CWD . '/../include/secrets.local.php');
 
 $_DB_CONFIG = array(
 	'host' => $mysql_host,
