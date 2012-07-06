@@ -13,23 +13,23 @@ if(!defined('IN_TRACKER'))
 					define('BLOCK_FILE', 1);
 				require ("blocks/".$blockfile."");
 			} else {
-				$content = "<center>Существует проблема с этим блоком!</center>";
+				$content = "<center>РЎСѓС‰РµСЃС‚РІСѓРµС‚ РїСЂРѕР±Р»РµРјР° СЃ СЌС‚РёРј Р±Р»РѕРєРѕРј!</center>";
 			}
 		}
 
 		if (!((isset ($content) AND !empty ($content)))) {
-			$content = "<center>Существует проблема с этим блоком!</center>";
+			$content = "<center>РЎСѓС‰РµСЃС‚РІСѓРµС‚ РїСЂРѕР±Р»РµРјР° СЃ СЌС‚РёРј Р±Р»РѕРєРѕРј!</center>";
 		}
 
 		if ($allow_block_hide && ($allow_hide || get_user_class() >= UC_ADMINISTRATOR)) {
 			$hidden_blocks = (isset($_COOKIE['hb']) && !empty($_COOKIE['hb']) ? unserialize($_COOKIE['hb']) : array());
 			$display = 'block';
 			$picture = 'minus';
-			$alt = 'Скрыть';
+			$alt = 'РЎРєСЂС‹С‚СЊ';
 			if (in_array($bid, $hidden_blocks)) {
 				$display = 'none';
 				$picture = 'plus';
-				$alt = 'Показать';
+				$alt = 'РџРѕРєР°Р·Р°С‚СЊ';
 			}
 			$blocktitle = $blocktitle . '&nbsp;<span style="cursor: pointer;" onclick="javascript: block_switch(\''.$bid.'\');"><img border="0" src="pic/'.$picture.'.gif" id="picb'.$bid.'" title="'.$alt.'"></span>';
 			$content = '<span id="sb'.$bid.'" style="display: '.$display.';">' . $content . '</span>';

@@ -35,7 +35,7 @@ if (get_user_class() < UC_MODERATOR)
 
 function bark($msg) {
 	stdhead();
-	stdmsg("Îøèáêà!", $msg);
+	stdmsg("ĞÑˆĞ¸Ğ±ĞºĞ°!", $msg);
 	stdfoot();
 	exit;
 }
@@ -45,13 +45,13 @@ $int_list = "torrentid:cat";
 
 foreach (explode(":", $var_list) as $x)
 	if (empty($_POST[$x]))
-		stderr($tracker_lang["error"], "Âû íå çàïîëíèëè âñå ïîëÿ!");
+		stderr($tracker_lang["error"], "Ğ’Ñ‹ Ğ½Ğµ Ğ·Ğ°Ğ¿Ğ¾Ğ»Ğ½Ğ¸Ğ»Ğ¸ Ğ²ÑĞµ Ğ¿Ğ¾Ğ»Ñ!");
 	else
 		$GLOBALS[$x] = $_POST[$x];
 
 foreach (explode(":", $int_list) as $x)
 	if (!is_valid_id($GLOBALS[$x]))
-		stderr($tracker_lang["error"], "Âû ââåëè íå ÷èñëî â ñëåäóşùåå ïîëå: $x");
+		stderr($tracker_lang["error"], "Ğ’Ñ‹ Ğ²Ğ²ĞµĞ»Ğ¸ Ğ½Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾ Ğ² ÑĞ»ĞµĞ´ÑƒÑÑ‰ĞµĞµ Ğ¿Ğ¾Ğ»Ğµ: $x");
 
 $imdb = $_POST["imdb"];
 $added = sqlesc(TIMENOW);

@@ -33,35 +33,35 @@ if (!mkglobal("username:password"))
 
 dbconn();
 
-function bark($text = "Имя пользователя или пароль неверны")
+function bark($text = "РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР»Рё РїР°СЂРѕР»СЊ РЅРµРІРµСЂРЅС‹")
 {
-  stderr("Ошибка входа", $text);
+  stderr("РћС€РёР±РєР° РІС…РѕРґР°", $text);
 }
 
 function is_password_correct($password, $secret, $hash) {
-	return ($hash == md5($secret . $password . $secret) || $hash == md5($secret . trim($password) . $secret)); // А нахуя вторая часть? Дебилы вводят из писем пароли с пробелом в конце/начале
+	return ($hash == md5($secret . $password . $secret) || $hash == md5($secret . trim($password) . $secret)); // Рђ РЅР°С…СѓСЏ РІС‚РѕСЂР°СЏ С‡Р°СЃС‚СЊ? Р”РµР±РёР»С‹ РІРІРѕРґСЏС‚ РёР· РїРёСЃРµРј РїР°СЂРѕР»Рё СЃ РїСЂРѕР±РµР»РѕРј РІ РєРѕРЅС†Рµ/РЅР°С‡Р°Р»Рµ
 }
 
 $res = sql_query("SELECT id, passhash, secret, enabled, status FROM users WHERE username = " . sqlesc($username));
 $row = mysql_fetch_array($res);
 
 if (!$row)
-	bark("Вы не зарегистрированы в системе.");
+	bark("Р’С‹ РЅРµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅС‹ РІ СЃРёСЃС‚РµРјРµ.");
 
 if ($row["status"] == 'pending')
-	bark("Вы еще не активировали свой аккаунт! Активируйте ваш аккаунт и попробуйте снова.");
+	bark("Р’С‹ РµС‰Рµ РЅРµ Р°РєС‚РёРІРёСЂРѕРІР°Р»Рё СЃРІРѕР№ Р°РєРєР°СѓРЅС‚! РђРєС‚РёРІРёСЂСѓР№С‚Рµ РІР°С€ Р°РєРєР°СѓРЅС‚ Рё РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.");
 
 if (!is_password_correct($password, $row['secret'], $row['passhash']))
 	bark();
 
 if ($row["enabled"] == "no")
-	bark("Этот аккаунт отключен.");
+	bark("Р­С‚РѕС‚ Р°РєРєР°СѓРЅС‚ РѕС‚РєР»СЋС‡РµРЅ.");
 
 $peers = sql_query("SELECT COUNT(id) FROM peers WHERE userid = $row[id]");
 $num = mysql_fetch_row($peers);
 $ip = getip();
 if ($num[0] > 0 && $row[ip] != $ip && $row[ip])
-	bark("Этот пользователь на данный момент активен с другого IP. Вход невозможен.");
+	bark("Р­С‚РѕС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ Р°РєС‚РёРІРµРЅ СЃ РґСЂСѓРіРѕРіРѕ IP. Р’С…РѕРґ РЅРµРІРѕР·РјРѕР¶РµРЅ.");
 
 logincookie($row["id"], $row["passhash"]);
 

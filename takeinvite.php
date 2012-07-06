@@ -7,7 +7,7 @@ loggedinorreturn();
 
 function bark($msg) {
 	stdhead();
-	stdmsg("Ошибка", $msg);
+	stdmsg("РћС€РёР±РєР°", $msg);
 	stdfoot();
 	die;
 }
@@ -25,7 +25,7 @@ $re = sql_query("SELECT invites FROM users WHERE id = $id") or sqlerr(__FILE__,_
 $tes = mysql_fetch_assoc($re);
 
 if ($tes[invites] <= 0)
-	bark("У вас больше не осталось приглашений!");
+	bark("РЈ РІР°СЃ Р±РѕР»СЊС€Рµ РЅРµ РѕСЃС‚Р°Р»РѕСЃСЊ РїСЂРёРіР»Р°С€РµРЅРёР№!");
 
 $hash  = md5(mt_rand(1, 1000000));
 

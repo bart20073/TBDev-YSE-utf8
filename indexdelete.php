@@ -40,11 +40,11 @@ if ($action == 'delete') {
 	$returnto = htmlentities($_GET["returnto"]);
 	$sure = $_GET["sure"];
 	if (!$sure)
-		stderr("Удалить", "Вы действительно хотите удалить этот релиз? Нажмите <a href=\"?action=delete&id=$id&returnto=$returnto&sure=1\">сюда</a> если вы уверены.");
+		stderr("РЈРґР°Р»РёС‚СЊ", "Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚РѕС‚ СЂРµР»РёР·? РќР°Р¶РјРёС‚Рµ <a href=\"?action=delete&id=$id&returnto=$returnto&sure=1\">СЃСЋРґР°</a> РµСЃР»Рё РІС‹ СѓРІРµСЂРµРЅС‹.");
 	sql_query("DELETE FROM indexreleases WHERE id = ".sqlesc($id)) or sqlerr(__FILE__,__LINE__);
 	if ($returnto != "")
 		header("Location: $returnto");
 	else
-		stderr("Успешно", "Релиз удален.");
+		stderr("РЈСЃРїРµС€РЅРѕ", "Р РµР»РёР· СѓРґР°Р»РµРЅ.");
 }
 ?>

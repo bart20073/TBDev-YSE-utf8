@@ -116,7 +116,7 @@ if ($action == 'delete')
 
 // main body  -----------------------------------------------------------------
 
-stdhead("Мои списки пользователей");
+stdhead("РњРѕРё СЃРїРёСЃРєРё РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№");
 
 /*print("<p><table class=main border=0 cellspacing=0 cellpadding=0>".
 "<tr><td class=embedded><h1 style='margin:0px'> Personal lists for $user[username]</h1>$donor$warned$country</td></tr></table></p>\n");*/
@@ -196,6 +196,6 @@ print("<tr><td style='padding: 5px;background-color: #ECE9D8'>");
 print("$blocks\n");
 print("</td></tr></table>\n");
 print("</td></tr></table>\n");
-print("<p><a href=users.php><b>Найти пользователя/Список пользователей</b></a></p>");
+print("<p><a href=users.php><b>РќР°Р№С‚Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ/РЎРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№</b></a></p>");
 stdfoot();
 ?>

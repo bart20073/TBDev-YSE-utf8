@@ -95,7 +95,7 @@ this.divobj.style.left = setX + "px";
 this.divobj.style.top  = setY + "px";
 }
 function tbdev_ajax(file){
-this.AjaxFailedAlert = "Ваш браузер не поддерживает расширенные возможности управления сайтом, мы настоятельно рекомендуем сменить браузер.\n";
+this.AjaxFailedAlert = "Р’Р°С€ Р±СЂР°СѓР·РµСЂ РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚ СЂР°СЃС€РёСЂРµРЅРЅС‹Рµ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё СѓРїСЂР°РІР»РµРЅРёСЏ СЃР°Р№С‚РѕРј, РјС‹ РЅР°СЃС‚РѕСЏС‚РµР»СЊРЅРѕ СЂРµРєРѕРјРµРЅРґСѓРµРј СЃРјРµРЅРёС‚СЊ Р±СЂР°СѓР·РµСЂ.\n";
 this.requestFile = file;
 this.method = "POST";
 this.URLString = "";
@@ -246,11 +246,11 @@ var elemNodeName = self.elementObj.nodeName;
 elemNodeName.toLowerCase();
 self.onHide();
 if (elemNodeName == "input" || elemNodeName == "select" || elemNodeName == "option" || elemNodeName == "textarea"){
-if (self.response == 'error') { alert('Доступ отклонен'); } else {
+if (self.response == 'error') { alert('Р”РѕСЃС‚СѓРї РѕС‚РєР»РѕРЅРµРЅ'); } else {
 self.elementObj.value = self.response;
 }
 } else {
-if (self.response == 'error') { alert('Доступ отклонен'); } else {
+if (self.response == 'error') { alert('Р”РѕСЃС‚СѓРї РѕС‚РєР»РѕРЅРµРЅ'); } else {
 self.elementObj.innerHTML = self.response;
 }
 }
