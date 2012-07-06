@@ -591,7 +591,7 @@ function sent_mail($to,$fromname,$fromemail,$subject,$body,$multiple=false,$mult
 	$headers .= "Message-ID: <$mid.thesystem@$name>".$eol;
 	$headers .= "X-Mailer: PHP v".phpversion().$eol;
     $headers .= "MIME-Version: 1.0".$eol;
-    $headers .= "Content-type: text/plain; charset=windows-1251".$eol;
+    $headers .= "Content-type: text/plain; charset=utf-8".$eol;
     $headers .= "X-Sender: PHP".$eol;
     if ($multiple)
     	$headers .= "Bcc: $multiplemail.$eol";
