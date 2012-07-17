@@ -30,7 +30,9 @@ require_once("include/bittorrent.php");
 
 dbconn(false);
 
-//loggedinorreturn();
+if ($show_torrentlist_to_guests != 1) {
+    loggedinorreturn();
+}
 parked();
 
 $cats = genrelist();

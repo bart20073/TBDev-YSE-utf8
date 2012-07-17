@@ -90,4 +90,9 @@ $enable_adv_antidreg = false; // Использовать продвинутую
  */
 // [END] Custom variables from Yuna Scatari
 
+// [BEGIN] Custom variables from a-v-k
+$show_torrentlist_to_guests = 0; // Показывать незарегистрированным пользователям список торрентов (browse.php). 1 - да, 0 - нет.
+// [END] Custom variables from a-v-k
+
+
 ?>
