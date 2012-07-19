@@ -37,7 +37,7 @@ $class = $_GET['class'];
 if ($class == '-' || !is_valid_user_class($class))
 	$class = '';
 
-$qry = " select upper(substr(name,1,1)) fs from user2_tab group by fs order by fs; ";
+$qry = " select upper(substr(username,1,1)) fs from users group by fs order by fs; ";
 $res = sql_query($qry) or sqlerr(__FILE__, __LINE__);
 $allLetters = array();
 while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
