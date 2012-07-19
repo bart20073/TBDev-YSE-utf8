@@ -37,6 +37,13 @@ $class = $_GET['class'];
 if ($class == '-' || !is_valid_user_class($class))
 	$class = '';
 
+$qry = " select upper(substr(name,1,1)) fs from user2_tab group by fs order by fs; ";
+$res = sql_query($qry) or sqlerr(__FILE__, __LINE__);
+$allLetters = array();
+while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
+    $allLetters[] = $row['fs'];
+}
+
 if ($search != '' || $class) {
 	$query = "username LIKE '%" . sqlwildcardesc("$search") . "%' AND status='confirmed'";
 	if ($search)
@@ -53,9 +60,12 @@ if ($search != '' || $class) {
 		$letter = "a";
 	$q = "letter=$letter";*/
 
-	if ($letter != "" && strpos("abcdefghijklmnopqrstuvwxyz" . "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", $letter) === false)
-		$letter = "";
-	$query = ( $letter != "" ? "username LIKE '$letter%' AND " : "") . "status='confirmed'";
+	if ($letter != "" && !in_array(strtoupper($letter), $allLetters)) {
+            $letter = "";
+        }
+        $upperLetter = strtoupper($letter);
+        $lowerLetter = strtolower($letter);
+        $query = ( $letter != "" ? " ( username like '$upperLetter%' or username like '$lowerLetter%' ) AND " : "") . "status='confirmed'";
 	if ($letter != "")
 		$q = "letter=$letter";
 
@@ -86,31 +96,14 @@ print("</form>\n");
 
 print("<p>\n");
 
-for ($i = 97; $i < 123; ++$i)
-{
-$l = chr($i);
-$L = chr($i - 32);
-if ($l == $letter)
-print("<b>$L</b>\n");
-else
-print("<a href=\"users.php?letter=$l\"><b>$L</b></a>\n");
+foreach ($allLetters as $L) {
+    $l = strtolower($L);
+    if ($l == $lowerLetter) {
+        print("<b>$L</b>\n");
+    } else {
+        print("<a href=\"users.php?letter=$l\"><b>$L</b></a>\n");
+    }
 }
-
-print("</p>\n");
-
-print("<p>\n");
-
-$russian_letters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"; // Да, Я догадываюсь что слова не могут начинатся с ьъы, но Юзернеймы могут!
-$russian_upperscase_letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-foreach (str_split($russian_letters) as $key => $l)
-{
-$L = $russian_upperscase_letters[$key];
-if ($l == $letter)
-print("<b>$L</b>\n");
-else
-print("<a href=\"users.php?letter=$l\"><b>$L</b></a>\n");
-}
-
 print("</p>\n");
 
 $q .= ($q ? "&amp;" : "");
