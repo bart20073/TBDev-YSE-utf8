@@ -50,8 +50,8 @@ if ($search != '' || $class) {
 		$q = "search=" . htmlspecialchars($search);
 } else {
 	$letter = trim($_GET["letter"]);
-	if (strlen($letter) > 1)
-		die;
+	if (mb_strlen($letter) > 1)
+		die('Error: Long letter');
 
 /*	if ($letter != "" && strpos("abcdefghijklmnopqrstuvwxyz", $letter) === false)
 		$letter = "a";
