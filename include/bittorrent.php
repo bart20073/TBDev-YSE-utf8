@@ -54,6 +54,9 @@ if (!defined('IN_TRACKER')) {
 	@session_start();
 	define ('ROOT_PATH', dirname(dirname(__FILE__))."/");
 
+        /* Установка внутренней кодировки в UTF-8 */
+        mb_internal_encoding("UTF-8");
+
 $allowed_referrers = <<<REF
 
 REF;
