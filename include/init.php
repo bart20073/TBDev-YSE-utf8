@@ -30,6 +30,15 @@
 if(!defined('IN_TRACKER') && !defined('IN_ANNOUNCE'))
   die("Hacking attempt!");
 
+if((function_exists("get_magic_quotes_gpc") && get_magic_quotes_gpc()) 
+        || ((ini_get('magic_quotes_sybase') !== false) && (strtolower(ini_get('magic_quotes_sybase')) != "0"))) {
+    die("Please disable magic_quotes_gpc, magic_quotes_runtime & magic_quotes_sybase in your server config or .htaccess file");
+    
+    //array_walk_recursive($_GET,'ref_stripslashes');
+    //array_walk_recursive($_POST,'ref_stripslashes');
+    //array_walk_recursive($_COOKIE,'ref_stripslashes');
+}
+
 if (!function_exists("htmlspecialchars_uni")) {
 	function htmlspecialchars_uni($message) {
 		$message = preg_replace("#&(?!\#[0-9]+;)#si", "&amp;", $message); // Fix & but allow unicode
